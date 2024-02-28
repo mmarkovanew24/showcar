@@ -43,12 +43,13 @@ export const Preview = () => {
             width: `${height * 0.707}px`,
             // border: "solid 2px pink", // remove it
           }}
-          ref={targetRef}>
+          ref={targetRef}
+        >
           <TitleInfo>
-            {car.title !== "" && <span>{car.title}</span>}
             {car.year > 0 && <span>{car.year}</span>}
+            {car.title !== "" && <span>{car.title}</span>}
             {car.mileage > 0 && (
-              <span>({numberFormatter(car.mileage)} mi)</span>
+              <span>({numberFormatter(car.mileage)} miles)</span>
             )}
           </TitleInfo>
           {additionalInfo.length > 0 && (
@@ -73,7 +74,8 @@ export const Preview = () => {
             )}
             {car.images.length > 1 && (
               <ImagesContainer
-                style={{ display: "flex", flexDirection: "column" }}>
+                style={{ display: "flex", flexDirection: "column" }}
+              >
                 {car.images.slice(1, car.images.length).map((image, idx) => {
                   let imageUrl = URL.createObjectURL(image.originFileObj);
                   const imageWidth = calculateImageWidth(
@@ -114,7 +116,8 @@ export const Preview = () => {
             {car.description && (
               <div
                 className="text"
-                style={{ whiteSpace: "pre-line" }}>{`${car.description}`}</div>
+                style={{ whiteSpace: "pre-line" }}
+              >{`${car.description}`}</div>
             )}
           </DescriptionContainer>
           <ContactContainer>

@@ -82,6 +82,7 @@ export const ImageCard = styled(Card)`
 `;
 
 export const DescriptionContainer = styled.div`
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
