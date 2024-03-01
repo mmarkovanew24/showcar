@@ -24,8 +24,7 @@ import { usePreview } from "../asserts/hooks/use-preview";
 import { useReactToPrint } from "react-to-print";
 
 export const Preview = () => {
-  const { additionalInfo, car, setHeight, height, previewRef, targetRef } =
-    usePreview();
+  const { additionalInfo, car, height, previewRef, targetRef } = usePreview();
   const handlePrint = useReactToPrint({
     content: () => previewRef.current,
     documentTitle: documentNameFormatter(car),
@@ -109,7 +108,7 @@ export const Preview = () => {
                 />
                 <div className="scan-me">
                   Scan me
-                  <img src={arrowImg} />
+                  <img src={arrowImg} alt="scan me icon" />
                 </div>
               </QRCodeContainer>
             )}
@@ -121,7 +120,11 @@ export const Preview = () => {
             )}
           </DescriptionContainer>
           <ContactContainer>
-            <img style={{ height: 16, width: 16 }} src={phoneImg} />
+            <img
+              style={{ height: 16, width: 16 }}
+              src={phoneImg}
+              alt="phone icon"
+            />
             <TitleH4>{car.contact?.name}</TitleH4>
             <TitleH4>+1 {car.contact?.phone}</TitleH4>
           </ContactContainer>

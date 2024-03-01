@@ -1,5 +1,5 @@
 import { Margin, usePDF } from "react-to-pdf";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCarInfo } from "../../app/reducer";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { wheelDriveFormatter } from "../utils/format-helper";
@@ -12,7 +12,7 @@ export function usePreview() {
   }); // todo - create name from props
   const previewRef = useRef(null);
   const car = useSelector(selectCarInfo);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const additionalInfo = useMemo(() => {
     const infoArray = [];
@@ -36,7 +36,7 @@ export function usePreview() {
 
   useEffect(() => {
     setHeight(previewRef.current?.offsetHeight);
-  }, [previewRef.current, previewRef.current?.offsetHeight]);
+  }, [previewRef.current.offsetHeight]);
 
   return {
     additionalInfo,
