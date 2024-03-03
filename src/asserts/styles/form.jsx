@@ -32,3 +32,10 @@ export const StyledLabel = styled.span({
 export const StyledFormItem = styled(FormItem)`
   margin-bottom: 14px;
 `;
+
+export const FormItemBody = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;

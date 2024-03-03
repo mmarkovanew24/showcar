@@ -18,21 +18,15 @@ import { ContactContainer } from "../asserts/styles/preview";
 import {
   StyledFormContainer,
   StyledTitle,
-  StyledLabel,
   StyledForm,
-  StyledFormItem,
 } from "../asserts/styles/form";
+import { CustomFormItem } from "./form-item,";
 
 export const MainForm = () => {
-  // const [car, setCar] = useState(new Car());
   const [files, setFiles] = useState([]);
   const car = useSelector(selectCarInfo);
   const dispatch = useDispatch();
   const setCarInfo = (updatedCar) => dispatch(setCar(updatedCar));
-
-  // useEffect(() => {
-  //   console.log(car);
-  // }, [car]);
 
   const props = {
     beforeUpload: (file) => {
@@ -66,37 +60,54 @@ export const MainForm = () => {
     <StyledFormContainer>
       <StyledTitle>Set car info</StyledTitle>
       <StyledForm>
-        <StyledFormItem label={<StyledLabel>Title</StyledLabel>} colon={false}>
+        <CustomFormItem
+          title="Title"
+          clearTitle="Clear a title"
+          clearAction={() => setCarInfo({ ...car, title: "" })}
+        >
           <Input
+            style={{ width: "100%" }}
             type="text"
             value={car.title}
             onChange={(event) =>
               setCarInfo({ ...car, title: event.target.value })
             }
           />
-        </StyledFormItem>
-        <StyledFormItem label={<StyledLabel>Year</StyledLabel>} colon={false}>
+        </CustomFormItem>
+        <CustomFormItem
+          title="Year"
+          clearTitle="Clear a year"
+          clearAction={() => setCarInfo({ ...car, year: 0 })}
+        >
           <Slider
+            style={{ width: "100%" }}
             min={2000}
             max={moment().year()}
             marks={{ [car.year]: car.year }}
             onChange={(value) => setCarInfo({ ...car, year: value })}
             value={car.year}
           />
-        </StyledFormItem>
-        <StyledFormItem
-          label={<StyledLabel>Mileage</StyledLabel>}
-          colon={false}
+        </CustomFormItem>
+        <CustomFormItem
+          title="Mileage"
+          clearTitle="Clear a mileage"
+          clearAction={() => setCarInfo({ ...car, mileage: 0 })}
         >
           <InputNumber
+            style={{ width: "100%" }}
             addonAfter="mi"
             step={100}
             value={car.mileage}
             onChange={(value) => setCarInfo({ ...car, mileage: value })}
           />
-        </StyledFormItem>
-        <StyledFormItem label={<StyledLabel>Engine</StyledLabel>} colon={false}>
+        </CustomFormItem>
+        <CustomFormItem
+          title="Engine"
+          clearTitle="Clear an engine"
+          clearAction={() => setCarInfo({ ...car, engine: 0 })}
+        >
           <InputNumber
+            style={{ width: "100%" }}
             addonAfter="L"
             step={0.01}
             min={0}
@@ -104,12 +115,14 @@ export const MainForm = () => {
             value={car.engine}
             onChange={(value) => setCarInfo({ ...car, engine: value })}
           />
-        </StyledFormItem>
-        <StyledFormItem
-          label={<StyledLabel>Wheel drive</StyledLabel>}
-          colon={false}
+        </CustomFormItem>
+        <CustomFormItem
+          title="Wheel drive"
+          clearTitle="Clear a wheel drive"
+          clearAction={() => setCarInfo({ ...car, wheelDrive: "" })}
         >
           <Radio.Group
+            style={{ width: "100%" }}
             buttonStyle="solid"
             value={car.wheelDrive}
             onChange={(event) =>
@@ -120,12 +133,15 @@ export const MainForm = () => {
             <Radio.Button value="rear">Rear</Radio.Button>
             <Radio.Button value="all">All</Radio.Button>
           </Radio.Group>
-        </StyledFormItem>
-        <StyledFormItem
-          label={<StyledLabel>Transmission</StyledLabel>}
-          colon={false}
+        </CustomFormItem>
+        <CustomFormItem
+          title="Transmission"
+          clearTitle="Clear a transmission"
+          clearAction={() =>
+            setCarInfo({ ...car, transmissionAutomatic: null })
+          }
         >
-          <Row>
+          <Row style={{ width: "100%" }}>
             <Col>Manual</Col>
             <Col>
               <Switch
@@ -141,19 +157,26 @@ export const MainForm = () => {
             </Col>
             <Col>Automatic</Col>
           </Row>
-        </StyledFormItem>
-        <StyledFormItem label={<StyledLabel>Price</StyledLabel>} colon={false}>
+        </CustomFormItem>
+        <CustomFormItem
+          title="Price"
+          clearTitle="Clear a price"
+          clearAction={() => setCarInfo({ ...car, price: 0 })}
+        >
           <InputNumber
+            style={{ width: "100%" }}
             addonAfter="$"
             value={car.price}
             onChange={(value) => setCarInfo({ ...car, price: value })}
           />
-        </StyledFormItem>
-        <StyledFormItem
-          label={<StyledLabel>Description</StyledLabel>}
-          colon={false}
+        </CustomFormItem>
+        <CustomFormItem
+          title="Description"
+          clearTitle="Clear a description"
+          clearAction={() => setCarInfo({ ...car, description: "" })}
         >
           <Input.TextArea
+            style={{ width: "100%" }}
             maxLength={600}
             type="text"
             value={car.description}
@@ -161,27 +184,38 @@ export const MainForm = () => {
               setCarInfo({ ...car, description: event.target.value })
             }
           />
-        </StyledFormItem>
-        <StyledFormItem
-          label={<StyledLabel>Facebook link</StyledLabel>}
-          colon={false}
+        </CustomFormItem>
+        <CustomFormItem
+          title="Facebook link"
+          clearTitle="Clear a facebook link"
+          clearAction={() => setCarInfo({ ...car, facebook: "" })}
         >
           <Input
+            style={{ width: "100%" }}
             type="facebook"
             value={car.facebook}
             onChange={(event) =>
               setCarInfo({ ...car, facebook: event.target.value })
             }
           />
-        </StyledFormItem>
-        <StyledFormItem label={<StyledLabel>Images</StyledLabel>} colon={false}>
+        </CustomFormItem>
+        <CustomFormItem
+          title="Images"
+          clearTitle="Clear all images"
+          clearAction={() => setCarInfo({ ...car, images: [] })}
+        >
           <Upload {...props}>
-            <Button icon={<UploadOutlined />}>Upload image only</Button>
+            <Button style={{ width: "100%" }} icon={<UploadOutlined />}>
+              Upload image only
+            </Button>
           </Upload>
-        </StyledFormItem>
-        <StyledFormItem
-          label={<StyledLabel>Contact</StyledLabel>}
-          colon={false}
+        </CustomFormItem>
+        <CustomFormItem
+          title="Contact"
+          clearTitle="Clear a contact information"
+          clearAction={() =>
+            setCarInfo({ ...car, contact: { name: "", phone: "" } })
+          }
         >
           <ContactContainer>
             <Input
@@ -212,7 +246,7 @@ export const MainForm = () => {
               }
             />
           </ContactContainer>
-        </StyledFormItem>
+        </CustomFormItem>
       </StyledForm>
     </StyledFormContainer>
   );
