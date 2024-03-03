@@ -36,7 +36,7 @@ export function usePreview() {
 
   useEffect(() => {
     setHeight(previewRef.current?.offsetHeight);
-  }, [previewRef.current.offsetHeight]);
+  }, [previewRef?.current?.offsetHeight]);
 
   return {
     additionalInfo,
